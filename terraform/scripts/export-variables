@@ -1,0 +1,13 @@
+##############
+export no_proxy=169.254.169.254,localhost,127.0.0.1
+export WORKSPACE=/apps
+export PROJECT="symbiosis"
+export ENVNAME="sit"
+################ Terraform Home Path ##################
+export TF_HOME="/apps/symbiosis"
+export TF_LANDSCAPE_ENABLED="false"
+export PATH=/apps:$PATH
+############### Terraform State @AWS ############
+export APPNAME="test"
+export S3_BUCKET="ais3"
+export KEYNAME="kp_devops"
