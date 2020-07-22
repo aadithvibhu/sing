@@ -24,5 +24,5 @@ resource "aws_network_acl" "main_nacl" {
 }
 #********* Variables **********
 
-variable project {}
-variable default_route {}
+#variable project {}
+#variable default_route {}

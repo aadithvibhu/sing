@@ -77,5 +77,5 @@ resource "aws_route_table_association" "public-route-assoc" {
 # Variables
 #************
 
-variable project {}
-variable default_route {}
+#variable project {}
+#variable default_route {}

@@ -12,6 +12,6 @@ resource "aws_vpc" "main" {
 }
 
 #********* Variables **********
-variable vpc_cidr {}
-variable project {}
-variable environment {}
+#variable vpc_cidr {}
+#variable project {}
+#variable environment {}

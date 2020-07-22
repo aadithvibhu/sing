@@ -35,10 +35,10 @@ resource "aws_subnet" "private_subnet_2" {
 
 #********* Variables **********
 
-variable sub_public_cidr_1 {}
-variable sub_private_cidr_1 {}
-variable sub_private_cidr_2 {}
-variable project {}
-variable avz {}
+#variable sub_public_cidr_1 {}
+#variable sub_private_cidr_1 {}
+#variable sub_private_cidr_2 {}
+#variable project {}
+#variable avz {}
 
 
