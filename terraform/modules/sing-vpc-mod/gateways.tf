@@ -59,8 +59,13 @@ resource "aws_route_table" "private-route" {
 # Private
 #********
 
-resource "aws_route_table_association" "private-route-assoc" {
+resource "aws_route_table_association" "private-route-assoc1" {
     subnet_id = "${aws_subnet.private_subnet_1.id}"
+    route_table_id = "${aws_route_table.private-route.id}"
+}
+
+resource "aws_route_table_association" "private-route-assoc2" {
+    subnet_id = "${aws_subnet.private_subnet_2.id}"
     route_table_id = "${aws_route_table.private-route.id}"
 }
 
