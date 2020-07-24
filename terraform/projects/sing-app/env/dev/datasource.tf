@@ -26,3 +26,10 @@ data "aws_subnet" "private_subnet_2" {
     values = ["${var.project}_private_sub2"]
   }
 }
+
+data "aws_subnet" "public_subnet" {
+   filter {
+    name = "tag:Name"
+    values = ["${var.project}_public_sub"]
+  }
+}
