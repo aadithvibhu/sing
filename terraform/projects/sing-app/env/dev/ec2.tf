@@ -1,14 +1,14 @@
 resource "aws_instance" "linux_instance" {
-  count 	                     = 2
+  count 	               =  2
   ami                          = "${lookup(var.linux_ami, var.aws_region)}"
-  instance_type  	             = t2.micro
+  instance_type  	       = "t2.micro"
   disable_api_termination      = false
   monitoring                   = true
-  user_data    	 	             = file("../../../scripts/apache.sh")
+  user_data    	 	       = file("../../../../scripts/apache.sh")
   iam_instance_profile         = "ec2admin"
-  key_name                     = "jaas"
-  subnet_id                    = "${element(var.subnet_ids, count.index)}"
-  associate_public_ip_address  = "false"
+  key_name                     = "devops"
+  subnet_id                    = "${element(["${data.aws_subnet.private_subnet_1.id}", "${data.aws_subnet.private_subnet_2.id}"], count.index)}"
+  associate_public_ip_address  = "true"
 #  security_groups              = ["${aws_security_group.private_sg.id}"]
 
   root_block_device {
@@ -53,14 +53,3 @@ variable "linux_ami" {
   }
 }
 
-variable "avz" {
-  type = map(string)
-  default = {
-   avz-a = "ap-southeast-1a"
-   avz-b = "ap-southeast-1b"
-   avz-c = "ap-southeast-1c"
- }
-
- variable "subnet_ids" {
-  default =  [ "data.aws_subnet.private_subnet_1.id", "data.aws_subnet.private_subnet_2.id"]
-}
