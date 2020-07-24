@@ -2,7 +2,7 @@ resource "aws_lb" "wlb" {
   name               = "${var.project}-wlb"
   internal           = false
   load_balancer_type = "application"
-  subnets            = ["${data.aws_subnet.public_subnet.id}", "${data.aws_subnet.private_subnet_1.id}"]
+  subnets            = ["${data.aws_subnet.public_subnet.id}", "${data.aws_subnet.private_subnet_2.id}"]
   #security_groups    = ["${aws_security_group.private_sg.id}"]
 
   tags = {
@@ -16,6 +16,15 @@ resource "aws_lb_target_group" "wlb_target_group" {
   target_type = "instance"
   vpc_id      = "${data.aws_vpc.main.id}"
   
+ health_check {
+    healthy_threshold   = 3
+    unhealthy_threshold = 6
+    timeout             = 20
+    interval            = 60
+    path                = "/index.html"
+  }
+
+
 }
 
 resource "aws_lb_target_group_attachment" "wlb_target_attach" {
