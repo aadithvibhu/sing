@@ -7,9 +7,10 @@ resource "aws_instance" "linux_instance" {
   user_data    	 	       = file("../../../../scripts/apache.sh")
   iam_instance_profile         = "ec2admin"
   key_name                     = "devops"
-  subnet_id                    = "${element(["${data.aws_subnet.private_subnet_1.id}", "${data.aws_subnet.private_subnet_2.id}"], count.index)}"
+  subnet_id                    = "${element(["${data.aws_subnet.private_subnet_1.id}", 
+  "${data.aws_subnet.private_subnet_2.id}"], count.index)}"
   associate_public_ip_address  = "true"
-#  security_groups              = ["${aws_security_group.private_sg.id}"]
+  security_groups              = ["${aws_security_group.private_sg.id}"]
 
   root_block_device {
     volume_type           = "gp2"
