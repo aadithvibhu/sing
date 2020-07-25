@@ -9,7 +9,7 @@ resource "aws_instance" "linux_instance" {
   key_name                     = "devops"
   subnet_id                    = "${element(["${data.aws_subnet.private_subnet_1.id}", "${data.aws_subnet.private_subnet_2.id}"],
             count.index)}"
-  associate_public_ip_address  = "true"
+  associate_public_ip_address  = "false"
   security_groups              = ["${aws_security_group.private_sg.id}"]
 
   root_block_device {
