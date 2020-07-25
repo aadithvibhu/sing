@@ -33,6 +33,7 @@ resource "aws_default_network_acl" "default" {
   default_network_acl_id = aws_vpc.main.default_network_acl_id
 
   ingress {
+    protocol   = http
     rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
