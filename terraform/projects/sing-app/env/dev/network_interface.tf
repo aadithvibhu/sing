@@ -1,6 +1,8 @@
 resource "aws_network_interface" "main" {
   subnet_id       =  "${element(["${data.aws_subnet.private_subnet_1.id}", 
   "${data.aws_subnet.private_subnet_2.id}"], count.index)}"
+
+   depends_on = ["aws_security_group.instance_security_group"]
 }
 
 resource "aws_network_interface_sg_attachment" "sg_attachment" {
