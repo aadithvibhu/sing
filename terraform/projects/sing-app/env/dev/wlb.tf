@@ -3,7 +3,7 @@ resource "aws_lb" "wlb" {
   internal           = false
   load_balancer_type = "application"
   subnets            = ["${data.aws_subnet.public_subnet.id}", "${data.aws_subnet.private_subnet_2.id}"]
-  #security_groups    = ["${aws_security_group.private_sg.id}"]
+  security_groups    = ["${aws_security_group.private_sg.id}"]
 
   tags = {
     Name = "${var.project}-wlb"
