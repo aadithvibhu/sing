@@ -18,14 +18,15 @@ resource "aws_security_group_rule" "http_rule" {
   security_group_id        = "${aws_security_group.private_sg.id}"
 }
 
-resource "aws_security_group_rule" "allow_all_public_rule" {
-  type                     = "ingress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
-  cidr_blocks              = ["0.0.0.0/0"]
-  security_group_id        = "${aws_security_group.public_sg.id}"
-}
+# not required if you attch default security group
+# resource "aws_security_group_rule" "allow_all_public_rule" {
+#   type                     = "ingress"
+#   from_port                = 0
+#   to_port                  = 0
+#   protocol                 = "-1"
+#   cidr_blocks              = ["0.0.0.0/0"]
+#   security_group_id        = "${aws_default_security_group.public_sg.id}"
+# }
 
 #*********** Egress *****************
 
@@ -38,11 +39,12 @@ resource "aws_security_group_rule" "private_outbound_rule" {
   security_group_id = "${aws_security_group.private_sg.id}"
 }
 
-resource "aws_security_group_rule" "public_outbound_rule" {
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = "${aws_security_group.public_sg.id}"
-}
+#not required if we attach to default security group
+# resource "aws_security_group_rule" "public_outbound_rule" {
+#   type              = "egress"
+#   from_port         = 0
+#   to_port           = 0
+#   protocol          = "-1"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = "${aws_default_security_group.public_sg.id}"
+# }

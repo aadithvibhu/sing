@@ -18,6 +18,10 @@ resource "aws_instance" "linux_instance" {
     delete_on_termination = true
   }
 
+  lifecycle {
+    create_before_destroy = true
+  }
+  
   tags			  = {
     Name                  = format("${var.instance_name}-%02d", count.index + 1)
     Type                  = "EC2 Instance"
